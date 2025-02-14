@@ -12,7 +12,9 @@ module load python/3.11.5
 source ~/projects/def-benliang/kalarde/AlignEnv/bin/activate
 cd ~/projects/def-benliang/kalarde/alignment-handbook
 
-python run_sft.py
+ACCELERATE_LOG_LEVEL=info accelerate launch \
+    --config_file recipes/accelerate_configs/deepspeed_zero3.yaml \
+    scripts/run_sft.py recipes/zephyr-7b-beta/sft/config_full.yaml
 
 
 
